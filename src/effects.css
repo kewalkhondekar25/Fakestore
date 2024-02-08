@@ -1,4 +1,17 @@
+body{
+    position: relative;
+}
 .label{
     font-size: 20px;
     font-weight: bold;
+}
+
+.pic{
+    height: 300px;
+    width: 100px;
+}
+
+select{
+    position: sticky;
+    top: 0;
 }

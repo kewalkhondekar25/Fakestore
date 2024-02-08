@@ -1,6 +1,7 @@
 function bodyLoad() {
     loadAllCategories();
     loadAllProducts();
+    //loadProductsByCategory();
 }
 
 function loadAllCategories() {
@@ -25,23 +26,52 @@ function loadAllProducts() {
             return res.json();
         })
         .then(function (data) {
-            for (var item of data) {
-                var card = document.createElement("div");
-                card.className = "card";
-                card.innerHTML = `
-            <img src=${item.image} class="card-img-top" alt="...">
-            <div class="card-body">
-            <h5 class="card-title">${item.title}</h5>
-            <p class="card-text">${item.description}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-            `;
-            document.getElementById("products").appendChild(card);
+            document.getElementById("products").innerHTML = "";
+            for (var items of data) {
+                var cards = document.createElement("div");
+                cards.innerHTML = `
+                <div class="card p-3  mt-5 me-3" style="width: 18rem;">
+                    <img src=${items.image} class="card-img-top pic " alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${items.title}</h5>
+                        <p class="card-text">${items.category}</p>
+                    <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>`;
+                document.getElementById("products").appendChild(cards);
+            }
+        })
+}
+
+function loadProductsByCategory(category){
+    fetch(`https://fakestoreapi.com/products/category/${category}`)
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (data) {
+            document.getElementById("products").innerHTML = "";
+            for (var items of data) {
+                var cards = document.createElement("div");
+                cards.innerHTML = `
+                <div class="card p-3  mt-5 me-3" style="width: 18rem;">
+                    <img src=${items.image} class="card-img-top pic " alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">${items.title}</h5>
+                        <p class="card-text">${items.category}</p>
+                    <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>`;
+                document.getElementById("products").appendChild(cards);
             }
         })
 }
 
 function categoryChange() {
     var category = document.querySelector("select").value;
-    alert(category);
+    alert(`You choose: ${category}`)
+    if(category == "ALL"){
+        loadAllProducts();
+    }else{
+        loadProductsByCategory(category);
+    }
 }
