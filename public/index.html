@@ -68,16 +68,46 @@
                     <select onchange="categoryChange()" class="form-select mt-3" id="">
 
                     </select>
+                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Your Cart
+                        <span id="count"></span>
+                    </button>
                 </div>
                 <div class="col-md-9">
-                    <div id="products" class="d-flex flex-wrap">
-
+                    <div id="products" class="d-flex flex-wrap overflow-auto" style="height: 650px">
                     </div>
                 </div>
             </div>
         </div>
     </section>
     <footer></footer>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Your Cart Items</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Preview</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Pay Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

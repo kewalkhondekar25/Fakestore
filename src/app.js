@@ -1,11 +1,10 @@
-fetch("https://fakestoreapi.com/products")
+fetch("https://fakestoreapi.com/products/categories")
         .then(function (res) {
             return res.json();
         })
         .then(function (data) {
-            var result = data.filter((item) => {
-                return(item.category == "men's clothing")
-            })
-            console.log(result);
+            data.unshift("ALL");            
+            console.log(data);
         })
         
+

@@ -35,7 +35,7 @@ function loadAllProducts() {
                     <div class="card-body">
                         <h5 class="card-title">${items.title}</h5>
                         <p class="card-text">${items.category}</p>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button onclick="selectAddToCart(${items.id})" class="btn btn-primary">Add to Cart</button>
                     </div>
                 </div>`;
                 document.getElementById("products").appendChild(cards);
@@ -52,13 +52,14 @@ function loadProductsByCategory(category){
             document.getElementById("products").innerHTML = "";
             for (var items of data) {
                 var cards = document.createElement("div");
+                cards.className = "overflow-auto"
                 cards.innerHTML = `
-                <div class="card p-3  mt-5 me-3" style="width: 18rem;">
+                <div class="card p-3  mt-5 me-3 " style="width: 18rem">
                     <img src=${items.image} class="card-img-top pic " alt="...">
                     <div class="card-body">
                         <h5 class="card-title">${items.title}</h5>
                         <p class="card-text">${items.category}</p>
-                    <button class="btn btn-primary">Add to Cart</button>
+                    <button class="btn btn-primary" onclick="selectAddToCart(${items.id})">Add to Cart</button>
                     </div>
                 </div>`;
                 document.getElementById("products").appendChild(cards);
@@ -74,4 +75,12 @@ function categoryChange() {
     }else{
         loadProductsByCategory(category);
     }
+}
+
+var cartItems = [];
+
+function selectAddToCart(id){
+    alert(`Item Added to Cart`);
+    cartItems.push(id)
+    document.getElementById("count").innerHTML = cartItems.length;
 }
