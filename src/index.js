@@ -35,6 +35,7 @@ function loadAllProducts() {
                     <div class="card-body">
                         <h5 class="card-title">${items.title}</h5>
                         <p class="card-text">${items.category}</p>
+                        <p class="card-text"> <span>&#8377; ${items.price}</span></p>
                     <button onclick="selectAddToCart(${items.id})" class="btn btn-primary">Add to Cart</button>
                     </div>
                 </div>`;
@@ -43,7 +44,7 @@ function loadAllProducts() {
         })
 }
 
-function loadProductsByCategory(category){
+function loadProductsByCategory(category) {
     fetch(`https://fakestoreapi.com/products/category/${category}`)
         .then(function (res) {
             return res.json();
@@ -59,6 +60,7 @@ function loadProductsByCategory(category){
                     <div class="card-body">
                         <h5 class="card-title">${items.title}</h5>
                         <p class="card-text">${items.category}</p>
+                        <p class="card-text"> <span>&#8377; ${items.price}</span></p>
                     <button class="btn btn-primary" onclick="selectAddToCart(${items.id})">Add to Cart</button>
                     </div>
                 </div>`;
@@ -69,18 +71,63 @@ function loadProductsByCategory(category){
 
 function categoryChange() {
     var category = document.querySelector("select").value;
-    alert(`You choose: ${category}`)
-    if(category == "ALL"){
+    alert(`Category: ${category}`)
+    if (category == "ALL") {
         loadAllProducts();
-    }else{
+    } else {
         loadProductsByCategory(category);
     }
 }
 
 var cartItems = [];
 
-function selectAddToCart(id){
+function selectAddToCart(id) {
     alert(`Item Added to Cart`);
     cartItems.push(id)
     document.getElementById("count").innerHTML = cartItems.length;
+    getProductDetailsById(id);
 }
+
+var checkoutItems = [];
+var totalPrice = [];
+var sum = 0;
+
+//total
+
+function getProductDetailsById(id) {
+    fetch(`https://fakestoreapi.com/products/${id}`)
+        .then(function (res) {
+            return res.json()
+        })
+        .then(function (data) {
+            // var checkoutProducts = data;
+            var tr = document.createElement("tr");
+
+            var tdPreview = document.createElement("td");
+            var tdName = document.createElement("td");
+            var tdPrice = document.createElement("td")
+
+            var img = document.createElement("img");
+            img.src = data.image;
+            img.height = "100";
+            img.width = "100";
+
+            tdPreview.appendChild(img);
+            tdName.innerHTML = data.title;
+            tdPrice.innerHTML = data.price;
+
+            tr.appendChild(tdPreview);
+            tr.appendChild(tdName);
+            tr.appendChild(tdPrice);
+
+            document.querySelector("tbody").appendChild(tr);
+
+            checkoutItems.push(data);
+            // console.log(checkoutItems);
+        })
+        console.log(checkoutItems.map((item) => {
+
+        }));
+}
+
+

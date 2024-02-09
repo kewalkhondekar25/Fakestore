@@ -20,7 +20,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-primary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand text-white" href="#">FakeStore</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -29,10 +29,12 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <span class="bi bi-cart4 text-white"></span>
+                            <!-- <a class="nav-link active text-white" aria-current="page" href="#">Shop</a> -->
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <span></span>
+                            <!-- <a class="nav-link" href="#">Link</a> -->
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -68,9 +70,15 @@
                     <select onchange="categoryChange()" class="form-select mt-3" id="">
 
                     </select>
-                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Your Cart
-                        <span id="count"></span>
-                    </button>
+                    <div class="d-flex flex-column mt-lg-5">
+                        <label class="label text-center">Your Cart</label>
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Checkout
+                            <span class="bi bi-cart-check-fill"></span>
+                            <span id="count" class="badge badge-light"></span>
+                        </button>
+                    </div>
+                    
                 </div>
                 <div class="col-md-9">
                     <div id="products" class="d-flex flex-wrap overflow-auto" style="height: 650px">
@@ -100,6 +108,7 @@
                             
                         </tbody>
                     </table>
+                    <!-- <h3>Total &#8377; <span id="total"></span></h3> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
